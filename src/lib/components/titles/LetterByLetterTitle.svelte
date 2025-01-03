@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { animate, stagger, inView } from 'motion';
+  import { scroll, animate, stagger } from 'motion';
 
   let titleContainer: HTMLElement;
   let title = 'Innovation';
@@ -11,21 +11,30 @@
     animate('.letter', { opacity: 0, y: 50 }, { duration: 0 });
     animate('.letter-subtitle', { opacity: 0 }, { duration: 0 });
 
-    inView(titleContainer, () => {
-      // animate('.letter', 
-      //   { opacity: 1, y: 0 },
-      //   { 
-      //     delay: stagger(0.05),
-      //     duration: 0.5,
-      //     easing: [0.22, 1, 0.36, 1]
-      //   }
-      // );
+    scroll(
+      animate('.letter', 
+        { opacity: [0, 1], y: [50, 0] },
+        { 
+          delay: stagger(0.05),
+          easing: [0.22, 1, 0.36, 1]
+        }
+      ),
+      {
+        target: titleContainer,
+        offset: ['start end', 'center center']
+      }
+    );
 
+    scroll(
       animate('.letter-subtitle',
-        { opacity: 1 },
-        { delay: 0.8 }
-      );
-    });
+        { opacity: [0, 1] },
+        { delay: 0.5 }
+      ),
+      {
+        target: titleContainer,
+        offset: ['start end', 'center center']
+      }
+    );
   });
 </script>
 
@@ -35,7 +44,7 @@
       <span class="letter">{letter}</span>
     {/each}
   </h2>
-  <div class="letter-subtitle">Letter by Letter Animation</div>
+  <div class="letter-subtitle">Scroll Animation</div>
 </div>
 
 <style>

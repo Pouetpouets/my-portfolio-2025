@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { animate, stagger, inView } from 'motion';
+  import { scroll, animate, stagger } from 'motion';
 
   let titleContainer: HTMLElement;
   
@@ -9,25 +9,30 @@
     animate('.stagger-word', { opacity: 0, y: 100 }, { duration: 0 });
     animate('.stagger-subtitle', { opacity: 0, x: -100 }, { duration: 0 });
 
-    inView(titleContainer, () => {
+    // Scroll-linked animations
+    scroll(
       animate('.stagger-word', 
-        { opacity: 1, y: 0 },
+        { opacity: [0, 1], y: [100, 0] },
         { 
           delay: stagger(0.2),
-          duration: 1,
           easing: [.22, .03, .28, 1]
         }
-      );
+      )
+    );
 
+    scroll(
       animate('.stagger-subtitle',
-        { opacity: 1, x: 0 },
+        { opacity: [0, 1], x: [-100, 0] },
         { 
-          delay: 0.8,
-          duration: 0.7,
+          delay: 0.4,
           easing: 'ease-out'
         }
-      );
-    });
+      ),
+      {
+        target: titleContainer,
+        offset: ['start end', 'end start']
+      }
+    );
   });
 </script>
 
@@ -37,7 +42,7 @@
     <span class="stagger-word">Digital</span>
     <span class="stagger-word">Experiences</span>
   </h2>
-  <div class="stagger-subtitle">Stagger Animation</div>
+  <div class="stagger-subtitle">Scroll to Reveal</div>
 </div>
 
 <style>

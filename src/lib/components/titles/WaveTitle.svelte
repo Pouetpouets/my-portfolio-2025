@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { animate, stagger, inView } from 'motion';
+  import { scroll, animate, stagger } from 'motion';
 
   let titleContainer: HTMLElement;
   let title = 'Creative Wave';
@@ -11,24 +11,30 @@
     animate('.wave-letter', { y: 50, opacity: 0 }, { duration: 0 });
     animate('.wave-subtitle', { opacity: 0 }, { duration: 0 });
 
-    inView(titleContainer, () => {
-      // animate('.wave-letter', 
-      //   { y: 0, opacity: 1 },
-      //   { 
-      //     delay: stagger(0.1, { from: 'center' }),
-      //     duration: 0.6,
-      //     easing: [0.22, 1, 0.36, 1]
-      //   }
-      // );
-
-      animate('.wave-subtitle',
-        { opacity: 1 },
+    scroll(
+      animate('.wave-letter', 
+        { y: [50, 0], opacity: [0, 1] },
         { 
-          delay: 0.8,
-          duration: 0.5
+          delay: stagger(0.1, { from: 'center' }),
+          easing: [0.22, 1, 0.36, 1]
         }
-      );
-    });
+      ),
+      {
+        target: titleContainer,
+        offset: ['start end', 'center center']
+      }
+    );
+
+    scroll(
+      animate('.wave-subtitle',
+        { opacity: [0, 1] },
+        { delay: 0.5 }
+      ),
+      {
+        target: titleContainer,
+        offset: ['start end', 'center center']
+      }
+    );
   });
 </script>
 
@@ -38,7 +44,7 @@
       <span class="wave-letter">{letter}</span>
     {/each}
   </h2>
-  <div class="wave-subtitle">Wave Animation</div>
+  <div class="wave-subtitle">Wave on Scroll</div>
 </div>
 
 <style>
@@ -59,6 +65,7 @@
   .wave-letter {
     display: inline-block;
     margin: 0 -0.05em;
+    will-change: transform, opacity;
   }
 
   .wave-subtitle {
