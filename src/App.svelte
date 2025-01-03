@@ -1,16 +1,21 @@
 <script lang="ts">
-  
+  import Title from './lib/components/Title.svelte';
 </script>
 
 <main>
-  <h1>My Portfolio 2025</h1>
+  <Title />
 </main>
 
 <style>
+  :global(body) {
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    color: #333;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
   main {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+    width: 100%;
   }
 </style>
