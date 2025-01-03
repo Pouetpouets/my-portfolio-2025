@@ -12,14 +12,14 @@
     animate('.letter-subtitle', { opacity: 0 }, { duration: 0 });
 
     inView(titleContainer, () => {
-      animate('.letter', 
-        { opacity: 1, y: 0 },
-        { 
-          delay: stagger(0.05),
-          duration: 0.5,
-          easing: [0.22, 1, 0.36, 1]
-        }
-      );
+      // animate('.letter', 
+      //   { opacity: 1, y: 0 },
+      //   { 
+      //     delay: stagger(0.05),
+      //     duration: 0.5,
+      //     easing: [0.22, 1, 0.36, 1]
+      //   }
+      // );
 
       animate('.letter-subtitle',
         { opacity: 1 },

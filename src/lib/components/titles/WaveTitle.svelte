@@ -12,14 +12,14 @@
     animate('.wave-subtitle', { opacity: 0 }, { duration: 0 });
 
     inView(titleContainer, () => {
-      animate('.wave-letter', 
-        { y: 0, opacity: 1 },
-        { 
-          delay: stagger(0.1, { from: 'center' }),
-          duration: 0.6,
-          easing: [0.22, 1, 0.36, 1]
-        }
-      );
+      // animate('.wave-letter', 
+      //   { y: 0, opacity: 1 },
+      //   { 
+      //     delay: stagger(0.1, { from: 'center' }),
+      //     duration: 0.6,
+      //     easing: [0.22, 1, 0.36, 1]
+      //   }
+      // );
 
       animate('.wave-subtitle',
         { opacity: 1 },

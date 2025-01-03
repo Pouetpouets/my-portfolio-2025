@@ -17,16 +17,16 @@
     }, { duration: 0 });
 
     inView(titleContainer, () => {
-      animate('.blur-title',
-        { 
-          opacity: 1,
-          filter: 'blur(0px)'
-        },
-        { 
-          duration: 1.2,
-          easing: [0.16, 1, 0.3, 1]
-        }
-      );
+    //   animate('.blur-title',
+    //     { 
+    //       opacity: 1,
+    //       filter: 'blur(0px)'
+    //     },
+    //     { 
+    //       duration: 1.2,
+    //       easing: [0.16, 1, 0.3, 1]
+    //     }
+    //   );
 
       animate('.blur-subtitle',
         { 
